@@ -13,9 +13,10 @@ func NewReceiver[T any](buf uint) *Receiver[T] { return &Receiver[T]{make(chan T
 func (r *Receiver[T]) Send(item T, _ *bool) error {
 	var err error
 	defer func() {
-		recover()
-		// safe to assume that we're recovering from a send on a closed channel
-		err = net.ErrClosed
+		if r := recover(); r != nil {		
+			// safe to assume that we're recovering from a send on a closed channel
+			err = net.ErrClosed
+		}
 	}()
 
 	r.Channel <- item
