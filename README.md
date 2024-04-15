@@ -1,5 +1,5 @@
 # `rpchan`: channel-like semantics over net/rpc
-![Coverage](https://img.shields.io/badge/Coverage-0.0%25-red)
+![coverage](https://img.shields.io/badge/coverage-100.0%25-brightgreen)
 [![Go Reference](https://pkg.go.dev/badge/github.com/lucafmarques/rpchan.svg)](https://pkg.go.dev/github.com/lucafmarques/rpchan)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lucafmarques/rpchan)](https://goreportcard.com/report/github.com/lucafmarques/rpchan)
 
