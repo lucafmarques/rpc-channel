@@ -28,12 +28,11 @@ jobs:
         run: |
           GOEXPERIMENT=rangefunc go test -v -covermode=count -coverprofile=coverage.out
           go tool cover -func=coverage.out -o=coverage.out
-        with:
-          text: "coverage"
 
       - name: Go Coverage Badge  # Pass the `coverage.out` output to this action
         uses: tj-actions/coverage-badge-go@v2
         with:
+          text: coverage
           filename: coverage.out
 
       - name: Verify Changed files
