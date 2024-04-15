@@ -40,7 +40,7 @@ func (ch *RPChan[T]) Send(v T) error {
 // Since this may involve a network call, Receive can return an error.
 func (ch *RPChan[T]) Receive() (v T, err error) {
 	if err = ch.setupR(); err != nil {
-		return
+		return v, err
 	}
 
 	r, ok := <-ch.receiver.Channel
@@ -48,7 +48,7 @@ func (ch *RPChan[T]) Receive() (v T, err error) {
 		return v, net.ErrClosed
 	}
 
-	return r, nil
+	return r, err
 }
 
 // Listen implements a GOEXPERIMENT=rangefunc iterator.
