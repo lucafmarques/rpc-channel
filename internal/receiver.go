@@ -19,7 +19,7 @@ func (r *Receiver[T]) Send(item T, _ *bool) (err error) {
 	}()
 
 	r.Channel <- item
-	return nil
+	return err
 }
 
 // Close implements the function signature for an RPC handler.
@@ -31,6 +31,7 @@ func (r *Receiver[T]) Close(_ int, _ *bool) (err error) {
 			err = net.ErrClosed
 		}
 	}()
+
 	close(r.Channel)
-	return nil
+	return err
 }
