@@ -57,7 +57,7 @@ func (ch *RPChan[T]) Receive() (v T, err error) {
 func (ch *RPChan[T]) Listen() func(func(T, error) bool) {
 	return func(yield func(T, error) bool) {
 		for {
-			if v, err := ch.Receive(); !yield(v, err) || err != nil {
+			if v, err := ch.Receive(); !yield(v, err) || errors.Is(err, net.ErrClosed) {
 				return
 			}
 		}
