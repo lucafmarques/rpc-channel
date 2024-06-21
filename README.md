@@ -65,6 +65,57 @@ func main() {
 </tr>
 </table>
 
+
+
+<details>
+<summary>
+
+## Tasks
+</summary>
+
+Executable `make`-like tasks using [`xc`](https://github.com/joerdav/xc).
+
+### test
+```
+GOEXPERIMENT=rangefunc go test ./...
+```
+
+### tag
+
+Creates new major|minor|patch tag.
+
+requires: test  
+inputs: VERSION  
+env: VERSION=patch  
+
+```
+git fetch --tags || true
+CURR_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`
+SPLITS=(${CURR_VERSION//./ })
+MAJOR=${SPLITS[0]//v}
+MINOR=${SPLITS[1]}
+PATCH=${SPLITS[2]}
+
+case $VERSION in
+    major)
+        MAJOR=$((MAJOR+1))
+        MINOR=0
+        PATCH=0
+        ;;
+    minor)
+        MINOR=$((MINOR+1))
+        PATCH=0
+        ;;
+    patch)
+        PATCH=$((PATCH+1))
+        ;;
+esac 
+
+TAG="v$MAJOR.$MINOR.$PATCH"
+git tag $TAG -m "tag($VERSION): Release version $TAG"
+```
+</details>
+
 ## rangefunc
 If built with Go 1.22 and `GOEXPERIMENT=rangefunc`, the `Listen` method can be used on a for-range loop, working exactly like a Go channel would.
 
