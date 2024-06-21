@@ -67,7 +67,10 @@ func main() {
 
 
 
-<details><summary>## Tasks</summary>
+<details>
+<summary>
+## Tasks
+</summary>
 
 Executable `make`-like tasks using [`xc`](https://github.com/joerdav/xc).
 
@@ -114,7 +117,7 @@ git tag $TAG -m "tag($VERSION): Release version $TAG"
 
 ---
 
-## rangefunc
+### rangefunc
 If built with Go 1.22 and `GOEXPERIMENT=rangefunc`, the `Listen` method can be used on a for-range loop, working exactly like a Go channel would.
 
 ---
