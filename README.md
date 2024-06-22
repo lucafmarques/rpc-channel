@@ -65,7 +65,75 @@ func main() {
 </tr>
 </table>
 
-## rangefunc
+
+
+<details>
+<summary>
+
+## Tasks
+</summary>
+
+This project uses [`xc`](https://github.com/joerdav/xc) for executing tasks, below are the tasks that you can e**x**e**c**ute, and _exactly_ what they do.
+
+### test
+
+Test the whole package or any of its test functions matching the string input.
+
+inputs: FUNC,FLAG  
+env: FUNC=  
+env: FLAG=  
+```
+export GOEXPERIMENT=rangefunc
+
+if test -n "$FUNC"; then RUN="-run $FUNC"; fi
+if test -n "$FLAG"; then FLG="-$FLAG"; fi
+go test ./... $RUN $FLG
+```
+
+### coverage
+
+Generate test coverage and open an HTML of it on the default browser.
+
+inputs: OPEN
+env: OPEN=yes
+```
+export GOEXPERIMENT=rangefunc
+
+go test -v -coverprofile=coverage.out ./... && \
+go tool cover -html coverage.out -o coverage.html
+if [ "$OPEN" = "yes" ]; then xdg-open coverage.html; fi
+```
+
+### tag
+
+Creates new major|minor|patch tag.
+
+requires: test  
+inputs: VERSION  
+env: VERSION=patch  
+```
+git fetch --tags || true
+
+CURR_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`
+SPLITS=(${CURR_VERSION//./ })
+MAJOR=${SPLITS[0]//v}
+MINOR=${SPLITS[1]}
+PATCH=${SPLITS[2]}
+
+case $VERSION in
+    major) MAJOR=$((MAJOR+1)) && MINOR=0 && PATCH=0 ;;
+    minor) MINOR=$((MINOR+1)) && PATCH=0 ;;
+    patch) PATCH=$((PATCH+1)) ;;
+esac 
+
+TAG="v$MAJOR.$MINOR.$PATCH"
+git tag $TAG -m "tag($VERSION): Release version $TAG"
+```
+</details>
+
+---
+
+### rangefunc
 If built with Go 1.22 and `GOEXPERIMENT=rangefunc`, the `Listen` method can be used on a for-range loop, working exactly like a Go channel would.
 
 ---
