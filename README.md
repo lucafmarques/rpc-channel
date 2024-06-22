@@ -73,7 +73,7 @@ func main() {
 ## Tasks
 </summary>
 
-Executable `make`-like tasks using [`xc`](https://github.com/joerdav/xc).
+This project uses [`xc`](https://github.com/joerdav/xc) for executing tasks, below are the tasks that you can e**x**e**c**ute, and _exactly_ what they do.
 
 ### test
 
@@ -96,7 +96,9 @@ Generate test coverage and open an HTML of it on the default browser.
 ```
 export GOEXPERIMENT=rangefunc
 
-go test -v -coverprofile=coverage.out ./... && go tool cover -html coverage.out -o coverage.html && xdg-open coverage.html
+go test -v -coverprofile=coverage.out ./... && \
+go tool cover -html coverage.out -o coverage.html && \
+xdg-open coverage.html
 ```
 
 ### tag
