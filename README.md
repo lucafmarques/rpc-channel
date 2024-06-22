@@ -1,5 +1,5 @@
 # `rpchan`: channel-like semantics over net/rpc
-![coverage](https://img.shields.io/badge/coverage-100.0%25-brightgreen)
+![coverage](https://img.shields.io/badge/coverage-96.2%25-brightgreen)
 [![Go Reference](https://pkg.go.dev/badge/github.com/lucafmarques/rpchan.svg)](https://pkg.go.dev/github.com/lucafmarques/rpchan)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lucafmarques/rpchan)](https://goreportcard.com/report/github.com/lucafmarques/rpchan)
 
@@ -101,6 +101,7 @@ export GOEXPERIMENT=rangefunc
 
 go test -v -coverprofile=coverage.out ./... && \
 go tool cover -html coverage.out -o coverage.html
+go tool cover -func=coverage.out -o=coverage.out
 if [ "$OPEN" = "yes" ]; then xdg-open coverage.html; fi
 ```
 
