@@ -135,7 +135,9 @@ git tag $TAG -m "tag($VERSION): Release version $TAG"
 ```
 </details>
 
-## rangefunc
+---
+
+### rangefunc
 If built with Go 1.22 and `GOEXPERIMENT=rangefunc`, the `Listen` method can be used on a for-range loop, working exactly like a Go channel would.
 
 ---
