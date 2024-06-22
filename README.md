@@ -82,7 +82,7 @@ Test the whole package or any of its test functions matching the string input.
 inputs: FUNC,FLAG  
 env: FUNC=  
 env: FLAG=  
-```
+```bash
 export GOEXPERIMENT=rangefunc
 
 if test -n "$FUNC"; then RUN="-run $FUNC"; fi
@@ -96,7 +96,7 @@ Generate test coverage and open an HTML of it on the default browser.
 
 inputs: OPEN  
 env: OPEN=yes  
-```
+```bash
 export GOEXPERIMENT=rangefunc
 
 go test -v -coverprofile=coverage.out ./... && \
@@ -112,7 +112,7 @@ Creates new major|minor|patch tag.
 requires: test  
 inputs: VERSION  
 env: VERSION=patch  
-```
+```bash
 git fetch --tags || true
 
 CURR_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`
