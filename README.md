@@ -94,8 +94,8 @@ go test ./... $RUN $FLG
 
 Generate test coverage and open an HTML of it on the default browser.
 
-inputs: OPEN
-env: OPEN=yes
+inputs: OPEN  
+env: OPEN=yes  
 ```
 export GOEXPERIMENT=rangefunc
 
