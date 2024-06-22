@@ -79,9 +79,9 @@ Executable `make`-like tasks using [`xc`](https://github.com/joerdav/xc).
 
 Test the whole package or any of its test functions matching the string input.
 
-inputs: FUNC,FLAG
-env: FUNC=
-env: FLAG=
+inputs: FUNC,FLAG  
+env: FUNC=  
+env: FLAG=  
 ```
 export GOEXPERIMENT=rangefunc
 
@@ -135,7 +135,9 @@ git tag $TAG -m "tag($VERSION): Release version $TAG"
 ```
 </details>
 
-## rangefunc
+---
+
+### rangefunc
 If built with Go 1.22 and `GOEXPERIMENT=rangefunc`, the `Listen` method can be used on a for-range loop, working exactly like a Go channel would.
 
 ---
