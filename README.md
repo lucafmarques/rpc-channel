@@ -128,7 +128,7 @@ case $VERSION in
 esac 
 
 TAG="v$MAJOR.$MINOR.$PATCH"
-git tag $TAG -m "tag($VERSION): Release version $TAG"
+git tag -s $TAG -m "tag($VERSION): Release version $TAG"
 ```
 </details>
 
