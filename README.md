@@ -76,8 +76,27 @@ func main() {
 Executable `make`-like tasks using [`xc`](https://github.com/joerdav/xc).
 
 ### test
+
+Test the whole package or any of its test functions matching the string input.
+
+inputs: FUNC,FLAG
+env: FUNC=
+env: FLAG=
 ```
-GOEXPERIMENT=rangefunc go test ./...
+export GOEXPERIMENT=rangefunc
+
+if test -n "$FUNC"; then RUN="-run $FUNC"; fi
+if test -n "$FLAG"; then FLG="-$FLAG"; fi
+go test ./... $RUN $FLG
+```
+
+### coverage
+
+Generate test coverage and open an HTML of it on the default browser.
+```
+export GOEXPERIMENT=rangefunc
+
+go test -v -coverprofile=coverage.out ./... && go tool cover -html coverage.out -o coverage.html && xdg-open coverage.html
 ```
 
 ### tag
@@ -87,9 +106,9 @@ Creates new major|minor|patch tag.
 requires: test  
 inputs: VERSION  
 env: VERSION=patch  
-
 ```
 git fetch --tags || true
+
 CURR_VERSION=`git describe --abbrev=0 --tags 2>/dev/null`
 SPLITS=(${CURR_VERSION//./ })
 MAJOR=${SPLITS[0]//v}
