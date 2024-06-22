@@ -24,6 +24,10 @@ jobs:
         with:
           go-version-file: 'go.mod'
 
+      - name: Install xc
+        run: |
+          go install github.com/joerdav/xc/cmd/xc@latest
+
       - name: Run Test
         run: |
           GOEXPERIMENT=rangefunc go test -v -covermode=count -coverprofile=coverage.out

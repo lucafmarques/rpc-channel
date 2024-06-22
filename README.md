@@ -93,12 +93,15 @@ go test ./... $RUN $FLG
 ### coverage
 
 Generate test coverage and open an HTML of it on the default browser.
+
+inputs: OPEN
+env: OPEN=yes
 ```
 export GOEXPERIMENT=rangefunc
 
 go test -v -coverprofile=coverage.out ./... && \
-go tool cover -html coverage.out -o coverage.html && \
-xdg-open coverage.html
+go tool cover -html coverage.out -o coverage.html
+if [ "$OPEN" = "yes" ]; then xdg-open coverage.html; fi
 ```
 
 ### tag
