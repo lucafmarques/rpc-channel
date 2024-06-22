@@ -101,6 +101,7 @@ export GOEXPERIMENT=rangefunc
 
 go test -v -coverprofile=coverage.out ./... && \
 go tool cover -html coverage.out -o coverage.html
+go tool cover -func=coverage.out -o=coverage.out
 if [ "$OPEN" = "yes" ]; then xdg-open coverage.html; fi
 ```
 
